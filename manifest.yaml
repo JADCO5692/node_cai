@@ -1,0 +1,6 @@
+---
+applications:
+- name: google_webhook
+  random-route: true
+  path: google_webhook
+  memory: 128M

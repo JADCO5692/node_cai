@@ -1,0 +1,16 @@
+{
+  "name": "joe",
+  "version": "1.0.0",
+  "description": "Joe the bot who will be helping in procurement area in S/4HANA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sudip Ghosh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  }
+}
