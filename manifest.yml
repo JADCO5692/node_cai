@@ -1,0 +1,6 @@
+---
+applications:
+- name: Google Webhook
+  memory: 128m
+  buildpack: nodejs_buildpack
+  instances: 1

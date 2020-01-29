@@ -2,15 +2,15 @@
   "name": "joe",
   "version": "1.0.0",
   "description": "Joe the bot who will be helping in procurement area in S/4HANA",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./index.js"
   },
-  "author": "Sudip Ghosh",
+  "author": "Himanshu Mittal",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "request": "^2.88.0"
   }
+  
 }
