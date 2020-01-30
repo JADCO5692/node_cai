@@ -24,7 +24,23 @@ app.post('/sapcai',(req,res) => {
       cairesponse = res.messages[0].content;
 
       translate(cairesponse, { to: detectlang }).then(res => {
-        response.send({fulfillmentText: res.text})
+        //response.send({fulfillmentText: res.text})
+		response.send({
+		  "payload": {
+			"google": {
+			  "expectUserResponse": true,
+			  "richResponse": {
+				"items": [
+				  {
+					"simpleResponse": {
+					  "textToSpeech": res.text
+					}
+				  }
+				]
+			  }
+			}
+		  }
+		})
         
         console.log(res.text); 
       }).catch(err => {
