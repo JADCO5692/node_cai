@@ -24,7 +24,7 @@ app.post('/sapcai',(req,res) => {
 		 
 		for (i = 0; i < res.messages.length; i++) 
 		{
-			if(res.messages[i].content != '- ****\n')
+			if(res.messages[i].content != 'The  is ')
 			{
 				cairesponse = res.messages[i].content;
 
