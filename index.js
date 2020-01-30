@@ -21,33 +21,38 @@ app.post('/sapcai',(req,res) => {
     transtext = res.text;
     build.dialog({ type: 'text', content: transtext}, { conversationId: sessionID })
      .then(res => {
-      cairesponse = res.messages[0].content;
+		 
+		for (i = 0; i < res.messages.length; i++) 
+		{
+			if(res.messages[i].content != '- ****\n')
+			{
+				cairesponse = res.messages[i].content;
 
-      translate(cairesponse, { to: detectlang }).then(res => {
-        //response.send({fulfillmentText: res.text})
-		response.send({
-		  "payload": {
-			"google": {
-			  "expectUserResponse": true,
-			  "richResponse": {
-				"items": [
-				  {
-					"simpleResponse": {
-					  "textToSpeech": res.text
+				translate(cairesponse, { to: detectlang }).then(res => {
+				//response.send({fulfillmentText: res.text})
+				response.send({
+				  "payload": {
+					"google": {
+					  "expectUserResponse": true,
+					  "richResponse": {
+						"items": [
+						  {
+							"simpleResponse": {
+							  "textToSpeech": res.text
+							}
+						  }
+						]
+					  }
 					}
 				  }
-				]
-			  }
-			}
-		  }
-		})
-        
-        console.log(res.text); 
-      }).catch(err => {
-        console.error(err);
-      });
+				})
 
-     
+				console.log(res.text); 
+				}).catch(err => {
+				console.error(err);
+				});
+			}
+		}
   }).catch(err => {
     console.error(err);
   });
