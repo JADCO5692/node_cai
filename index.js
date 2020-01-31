@@ -55,16 +55,36 @@ app.post('/sapcai',(req,res3) => {
 			console.log('here 4')
 			console.log(cairesponse)
 			translate(cairesponse, { to: detectlang }).then(res1 => {
-				var res4 = res1.text.split(". ");
-				for (i = 0; i < res4.length; i++) 
+				//var res4 = res1.text.split(". ");
+				var i = res1.text.indexOf(". ");
+				console.log('here 6');
+				console.log(i);
+				
+				if(i == -1)
 				{
 					response_text.payload.google.richResponse.items.push(
 					{
 						"simpleResponse": 
 						{
-							"textToSpeech": res4[i]
+							"textToSpeech": res1.text
 						}
 					})
+				}
+				else
+				{
+					var res4 = [res1.text.slice(0,i), res1.text.slice(i+1)];
+					console.log('here 7');
+					console.log(res4);
+					for (i = 0; i < res4.length; i++) 
+					{
+						response_text.payload.google.richResponse.items.push(
+						{
+							"simpleResponse": 
+							{
+								"textToSpeech": res4[i]
+							}
+						})
+				}
 				}				
 				console.log('here 3');
 				console.log(JSON.stringify(response_text));
