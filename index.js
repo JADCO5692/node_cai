@@ -34,35 +34,45 @@ app.post('/sapcai',(req,res3) => {
 		detectlang = res2.from.language.iso;
 		transtext = res2.text;
 		build.dialog({ type: 'text', content: transtext}, { conversationId: sessionID }).then(res =>{					
-			//console.log(res);
+			console.log(res);
 			reponseMesLen = res.messages.length;
 			for (i = 0; i < res.messages.length; i++) 
-			{				
+			{
 				if(res.messages[i].content != 'The  is ')
 				{
-					count = count + 1;
-					cairesponse = res.messages[i].content;
-					translate(cairesponse, { to: detectlang }).then(res1 => {
-						count1 = count1 + 1;
-						response_text.payload.google.richResponse.items.push(
-							{
-								"simpleResponse": 
-								{
-									"textToSpeech": res1.text
-								}
-							})
-						console.log('here 3');
-						console.log(JSON.stringify(response_text));
-						//console.log(res1.text); 
-						if(count1 == count)
-						{
-							response.send(response_text);
-						}
-					}).catch(err => {
-					console.error(err);
-					});							
+					count1 = count1 + 1;
+					if(count1 == 1)
+					{
+						cairesponse = res.messages[i].content;
+					}
+					else
+					{
+						cairesponse = cairesponse.concat('. ');
+						cairesponse = cairesponse.concat(res.messages[i].content);
+					}														
 				}
-			}		
+			}
+			console.log('here 4')
+			console.log(cairesponse)
+			translate(cairesponse, { to: detectlang }).then(res1 => {
+				var res4 = res1.text.split(". ");
+				for (i = 0; i < res4.length; i++) 
+				{
+					response_text.payload.google.richResponse.items.push(
+					{
+						"simpleResponse": 
+						{
+							"textToSpeech": res4[i]
+						}
+					})
+				}				
+				console.log('here 3');
+				console.log(JSON.stringify(response_text));
+				//console.log(res1.text); 
+				response.send(response_text);
+			}).catch(err => {
+			console.error(err);
+			});
 		}).catch(err =>{
 			console.error(err);
 		});
