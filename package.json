@@ -11,7 +11,7 @@
     "@google-cloud/translate": "^5.1.4",
     "@k3rn31p4nic/google-translate-api": "github:k3rn31p4nic/google-translate-api",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "request": "^2.88.0",
     "sapcai": "^4.1.0"
   }
